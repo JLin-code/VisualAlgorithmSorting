@@ -1,37 +1,41 @@
+body {
+  background-color: #2c2f33; /* A dark gray shade */
+  color: #ffffff; /* Ensure text is visible against the dark background */
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 .array-container {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  margin-bottom: 20px; /* Adds spacing between bars and buttons */
-  flex-wrap: wrap; /* Ensures bars wrap on smaller screens */
+  margin-bottom: 20px; /* Adds some spacing between the bars and buttons */
 }
 
 .array-bar {
-  width: 6px;
-  background-color: green;
+  width: 4px;
+  background-color: #87CEEB; /* Light blue */
   display: inline-block;
   margin: 0 1.5px;
-  transition: height 0.2s ease; /* Smooth height transition for animations */
 }
 
 .button-container {
   display: flex;
   justify-content: center;
   gap: 10px; /* Adds spacing between buttons */
-  flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
 }
 
 button {
   padding: 10px 15px;
   font-size: 14px;
-  background-color: #96d4af;
+  background-color: #1b4332; /* A darker green shade */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: #ffffff; /* Button text color */
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #78b294;
-  transform: scale(1.05); /* Slight scaling effect on hover for better feedback */
+  background-color: #45a049; /* Slightly lighter green on hover */
 }

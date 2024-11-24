@@ -3,16 +3,16 @@ import {getMergeSortAnimations, getQuickSortAnimations, getHeapSortAnimations, g
 import './SortingVisualizer.css';
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 85;
+const ANIMATION_SPEED_MS = 68;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 140;
 
 // This is the main color of the array bars.
-const PRIMARY_COLOR = '#96d4af';
+const PRIMARY_COLOR = '#355e3b';
 
 // This is the color of array bars that are being compared throughout the animations.
-const SECONDARY_COLOR = 'red';
+const SECONDARY_COLOR = '#FF6F61';
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
