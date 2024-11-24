@@ -106,24 +106,23 @@ function partition(array, startIdx, endIdx, animations) {
 //=========================================================Heap Sort====================================================================
 export function getHeapSortAnimations(array) {
   const animations = [];
-  const auxiliaryArray = array.slice(); // Copy of array to sort
-  
-  // Step 1: Build the max-heap
+  const auxiliaryArray = array.slice();
+
   buildMaxHeap(auxiliaryArray, animations);
 
-  // Step 2: Perform heap sort
   let endIdx = auxiliaryArray.length - 1;
   while (endIdx > 0) {
+    // Highlight root and last element before swap
+    animations.push([0, endIdx, "compare"]);
     // Swap the root with the last element
-    animations.push([0, endIdx]);  // Highlight swap
-    swap(auxiliaryArray, 0, endIdx);  // Swap root and last element
-    animations.push([0, endIdx]);  // Revert color after swap
-    
-    // Heapify the root after swap to restore heap property
+    swap(auxiliaryArray, 0, endIdx);
+    animations.push([0, endIdx, "swap"]); // Record the swap
+
+    // Restore heap property after swap
     heapify(auxiliaryArray, 0, endIdx, animations);
-    endIdx--;  // Decrease the size of the heap
+    endIdx--;
   }
-  
+
   return animations;
 }
 
@@ -139,23 +138,19 @@ function heapify(array, currentIdx, heapSize, animations) {
   const leftIdx = 2 * currentIdx + 1;
   const rightIdx = 2 * currentIdx + 2;
 
-  // If left child is larger than current node
   if (leftIdx < heapSize && array[leftIdx] > array[largest]) {
+    animations.push([currentIdx, leftIdx, "compare"]);
     largest = leftIdx;
   }
-  
-  // If right child is larger than current largest
   if (rightIdx < heapSize && array[rightIdx] > array[largest]) {
+    animations.push([currentIdx, rightIdx, "compare"]);
     largest = rightIdx;
   }
-  
-  // If largest is not currentIdx, swap and recursively heapify the affected subtree
   if (largest !== currentIdx) {
-    // Visualize the swap (add color change and height update)
-    animations.push([currentIdx, largest]);
-    animations.push([currentIdx, largest]); // Revert color after swap
+    animations.push([currentIdx, largest, "compare"]);
+    animations.push([currentIdx, largest, "swap"]);
     swap(array, currentIdx, largest);
-    heapify(array, largest, heapSize, animations);  // Recursive heapify
+    heapify(array, largest, heapSize, animations);
   }
 }
 
@@ -164,36 +159,25 @@ function swap(array, idx1, idx2) {
   array[idx1] = array[idx2];
   array[idx2] = temp;
 }
+
 //=========================================================Bubble Sort====================================================================
 export function getBubbleSortAnimations(array) {
   const animations = [];
-  const auxiliaryArray = array.slice(); // Copy of the array for sorting
-
-  // Bubble Sort Logic
-  for (let i = 0; i < auxiliaryArray.length - 1; i++) {
-    for (let j = 0; j < auxiliaryArray.length - i - 1; j++) {
+  const auxiliaryArray = array.slice();
+  
+  // Bubble Sort logic
+  let n = auxiliaryArray.length;
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - 1 - i; j++) {
       // Add comparison animation
-      animations.push([j, j + 1]);
+      animations.push([j, j + 1, "compare"]);
 
+      // If out of order, add swap animation
       if (auxiliaryArray[j] > auxiliaryArray[j + 1]) {
-        // Add swap animation (height updates)
-        animations.push([j, auxiliaryArray[j + 1]]);
-        animations.push([j + 1, auxiliaryArray[j]]);
-
-        // Perform the swap
-        const temp = auxiliaryArray[j];
-        auxiliaryArray[j] = auxiliaryArray[j + 1];
-        auxiliaryArray[j + 1] = temp;
-      } else {
-        // If no swap is needed, just push the heights (no update)
-        animations.push([j, auxiliaryArray[j]]);
-        animations.push([j + 1, auxiliaryArray[j + 1]]);
+        animations.push([j, j + 1, "swap"]);
+        swap(auxiliaryArray, j, j + 1);
       }
     }
   }
-
-  // Debug: Log animations to verify the steps
-  console.log('Generated Bubble Sort Animations:', animations);
-
   return animations;
 }
