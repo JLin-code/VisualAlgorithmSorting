@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### For error "The file is not digitally signed" use the following command:
+//Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 ## Available Scripts
 
 In the project directory, you can run:

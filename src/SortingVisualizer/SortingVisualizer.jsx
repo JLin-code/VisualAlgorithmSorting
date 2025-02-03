@@ -2,8 +2,7 @@ import React from 'react';
 import {getMergeSortAnimations, getQuickSortAnimations, getHeapSortAnimations, getBubbleSortAnimations} from '../sortingAlgorithms/sortingAlgorithms.js';
 import './SortingVisualizer.css';
 
-//Use this command for error "The file is not digitally signed"
-//Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 10;
